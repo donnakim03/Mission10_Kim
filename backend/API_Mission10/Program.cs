@@ -14,6 +14,8 @@ builder.Services.AddDbContext<BowlingLeagueContext>(options =>
     options.UseSqlite(builder.Configuration["ConnectionStrings:BowlerConnection"])
 );
 
+builder.Services.AddScoped<IBowlingLeagueRepository, EFBowlingLeagueRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,4 +1,18 @@
+import { useEffect, useState } from 'react';
+import { Bowler } from '../types/Bowler';
+
 function BowlerList() {
+  const [bowlerData, setBowlerData] = useState<Bowler[]>([]);
+
+  useEffect(() => {
+    const fetchBowlerData = async () => {
+      const rsp = await fetch('http://localhost:5031/Bowler');
+      const f = await rsp.json();
+      setBowlerData(f);
+    };
+    fetchBowlerData();
+  }, []);
+
   return (
     <div>
       <table className="table table-bordered">
@@ -13,7 +27,21 @@ function BowlerList() {
             <th>PhoneNumber</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {bowlerData.map((b) => (
+            <tr key={b.bowlerId}>
+              <td>
+                {b.bowlerFirstName} {b.bowlerMiddleInit}. {b.bowlerLastName}
+              </td>
+              <td>{b.teamId}</td>
+              <td>{b.bowlerAddress}</td>
+              <td>{b.bowlerCity}</td>
+              <td>{b.bowlerState}</td>
+              <td>{b.bowlerZip}</td>
+              <td>{b.bowlerPhoneNumber}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );

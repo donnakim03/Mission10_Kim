@@ -3,5 +3,7 @@
     public interface IBowlingLeagueRepository
     {
         IEnumerable<Bowler> Bowlers { get; }
+
+        IEnumerable<Bowler> GetAllBowlersWithTeams();
     }
 }

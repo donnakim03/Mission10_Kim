@@ -1,3 +1,5 @@
+// Header component with description for the table
+
 function Heading() {
   return (
     <div>

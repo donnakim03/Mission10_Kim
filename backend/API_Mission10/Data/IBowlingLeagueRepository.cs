@@ -4,6 +4,6 @@
     {
         IEnumerable<Bowler> Bowlers { get; }
 
-        IEnumerable<Bowler> GetAllBowlersWithTeams();
+        IEnumerable<Bowler> GetAllBowlersWithTeams(); // To join the Bowlers and Teams table
     }
 }

@@ -1,3 +1,5 @@
+// To set up data we're receiving from the API
+
 export type Bowler = {
   bowlerId: number;
   bowlerLastName: string;

@@ -16,6 +16,7 @@ namespace API_Mission10.Data
 
         public IEnumerable<Bowler> GetAllBowlersWithTeams()
         {
+            // Query to join data and only get bowlers in team Marlins or Sharks
             var joinedData = from Bowler in _context.Bowlers
                              join Team in _context.Teams
                              on Bowler.TeamId equals Team.TeamId

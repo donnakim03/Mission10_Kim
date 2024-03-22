@@ -4,6 +4,7 @@ import { Bowler } from '../types/Bowler';
 function BowlerList() {
   const [bowlerData, setBowlerData] = useState<Bowler[]>([]);
 
+  //Getting Bowler Data from the API
   useEffect(() => {
     const fetchBowlerData = async () => {
       const rsp = await fetch('http://localhost:5031/Bowler');

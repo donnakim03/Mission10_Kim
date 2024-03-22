@@ -19,7 +19,8 @@ namespace API_Mission10.Data
             var joinedData = from Bowler in _context.Bowlers
                              join Team in _context.Teams
                              on Bowler.TeamId equals Team.TeamId
-                             select new
+                             where Team.TeamName == "Marlins" || Team.TeamName == "Sharks"
+                             select new Bowler
                              {
                                  BowlerId = Bowler.BowlerId,
                                  BowlerFirstName = Bowler.BowlerFirstName,
@@ -30,29 +31,13 @@ namespace API_Mission10.Data
                                  BowlerState = Bowler.BowlerState,
                                  BowlerZip = Bowler.BowlerZip,
                                  BowlerPhoneNumber = Bowler.BowlerPhoneNumber,
-                                 TeamName = Team.TeamName
+                                 Team = new Team
+                                 {
+                                     TeamName = Team.TeamName
+                                 }
                              };
 
-            var bowlersWithTeams = joinedData
-                .Select(j => new Bowler
-                {
-                    BowlerId = j.BowlerId,
-                    BowlerFirstName = j.BowlerFirstName,
-                    BowlerLastName = j.BowlerLastName,
-                    BowlerMiddleInit = j.BowlerMiddleInit,
-                    BowlerAddress = j.BowlerAddress,
-                    BowlerCity = j.BowlerCity,
-                    BowlerState = j.BowlerState,
-                    BowlerZip = j.BowlerZip,
-                    BowlerPhoneNumber = j.BowlerPhoneNumber,
-                    Team = new Team
-                    {
-                        TeamName = j.TeamName
-                    }
-                })
-                .ToList();
-
-            return bowlersWithTeams;
+            return joinedData.ToList();
         }
     }
 }
